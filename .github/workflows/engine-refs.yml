@@ -1,0 +1,55 @@
+# Copyright The Orca Authors
+# SPDX-License-Identifier: Apache-2.0
+
+# Checks the engine and SDK paths the skill cites against the engine's main branch,
+# which is what the links in live-sources.md point at. It isn't a required check:
+# it reports when an engine change has moved a file the skill cites.
+name: Engine references
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - skills/orca-api/shared/live-sources.md
+      - scripts/check-xrefs.sh
+      - .github/workflows/engine-refs.yml
+
+permissions:
+  contents: read
+
+jobs:
+  engine-refs:
+    name: engine-refs
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Check out the engine
+        uses: actions/checkout@v4
+        with:
+          repository: orca-ae/orca-agent-engine
+          ref: main
+          path: .engine
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: scripts/package-lock.json
+
+      - name: Install the pinned SDK
+        run: npm ci --prefix scripts --no-audit --no-fund --ignore-scripts
+
+      - name: Check the cited paths
+        env:
+          ORCA_ENGINE_DIR: ${{ github.workspace }}/.engine
+          ORCA_REQUIRE_LIVE_SOURCES: "1"
+        run: scripts/check-xrefs.sh

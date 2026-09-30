@@ -1,0 +1,12 @@
+{
+  "name": "orca-skills-checks",
+  "version": "0.0.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "description": "Pinned tooling for scripts/check-all.sh: the published SDK and the compiler that typecheck the skill's TypeScript examples.",
+  "devDependencies": {
+    "@runorca/orca-sdk": "0.2.3",
+    "@types/node": "20.17.6",
+    "typescript": "5.8.3"
+  }
+}

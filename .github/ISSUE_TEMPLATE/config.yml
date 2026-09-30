@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question
+    url: https://github.com/orca-ae/orca-skills/discussions/categories/q-a
+    about: Questions about using the skills belong in GitHub Discussions.
+  - name: Share an idea
+    url: https://github.com/orca-ae/orca-skills/discussions/categories/ideas
+    about: Ideas for new skills or new coverage, to discuss before you write them.
+  - name: Report a bug in the engine, the ork CLI or the TypeScript SDK
+    url: https://github.com/orca-ae/orca-agent-engine/issues/new/choose
+    about: Orca Agent Engine and its tools track their bugs in the engine repository.
+  - name: Report a security vulnerability
+    url: https://github.com/orca-ae/orca-skills/security/advisories/new
+    about: Please report security issues privately, not in a public issue. See SECURITY.md.

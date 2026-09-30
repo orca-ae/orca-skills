@@ -1,0 +1,59 @@
+name: Skill disagrees with the engine
+description: A skill tells an agent something that Orca Agent Engine, the ork CLI or the TypeScript SDK doesn't do.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this. If the engine, `ork` or the SDK itself misbehaves,
+        report it on the [engine repository](https://github.com/orca-ae/orca-agent-engine/issues/new/choose)
+        instead. Please don't report security vulnerabilities here; follow
+        [SECURITY.md](https://github.com/orca-ae/orca-skills/blob/main/SECURITY.md).
+  - type: input
+    id: location
+    attributes:
+      label: Where in the skill?
+      description: The file, and the section or line.
+      placeholder: "skills/orca-api/shared/managed-agents-events.md, \"Reconnecting\""
+    validations:
+      required: true
+  - type: textarea
+    id: skill-says
+    attributes:
+      label: What does the skill say?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What actually happens?
+      description: The request, command or code you ran, and the response or error you got.
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: The engine release or commit, and the ork and @runorca/orca-sdk versions, where they apply.
+      placeholder: "engine v0.5.0, ork v0.5.0, @runorca/orca-sdk 0.2.2"
+    validations:
+      required: true
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Which agent used the skill?
+      options:
+        - Claude Code
+        - Another agent
+        - I read the skill myself
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you submit
+      options:
+        - label: I searched the existing issues and didn't find this problem.
+          required: true
+        - label: This isn't a security vulnerability.
+          required: true

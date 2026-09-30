@@ -1,0 +1,43 @@
+Copyright The Orca Authors
+
+
+Third-party code in this repository
+===================================
+
+The files below were copied into this repository from other projects, verbatim
+or with modifications. Each entry gives the project's license and the copyright
+notices stated by the copied files or by the project's NOTICE file.
+
+
+Anthropic Agent Skills
+----------------------
+https://github.com/anthropics/skills
+Licensed under the Apache License, Version 2.0.
+Copyright 2026 Anthropic, PBC.
+
+  The files listed below are taken from the claude-api skill, skills/claude-api/
+  in that repository, at commit f6656c1256d5a8adfa37db9110046ef20bac644c. Each
+  was modified to target Orca Agent Engine, the ork CLI and the
+  @runorca/orca-sdk TypeScript SDK; the upstream path is given where it differs.
+
+    skills/orca-api/SKILL.md
+    skills/orca-api/curl/managed-agents.md
+    skills/orca-api/shared/live-sources.md
+    skills/orca-api/shared/managed-agents-api-reference.md
+    skills/orca-api/shared/managed-agents-client-patterns.md
+    skills/orca-api/shared/managed-agents-core.md
+    skills/orca-api/shared/managed-agents-environments.md
+    skills/orca-api/shared/managed-agents-events.md
+    skills/orca-api/shared/managed-agents-memory.md
+    skills/orca-api/shared/managed-agents-multiagent.md
+    skills/orca-api/shared/managed-agents-onboarding.md
+    skills/orca-api/shared/managed-agents-outcomes.md
+    skills/orca-api/shared/managed-agents-overview.md
+    skills/orca-api/shared/managed-agents-tools.md
+    skills/orca-api/shared/managed-agents-triggers.md
+      (from shared/managed-agents-scheduled-deployments.md)
+    skills/orca-api/shared/orca-cli.md
+      (from shared/anthropic-cli.md)
+    skills/orca-api/typescript/managed-agents/README.md
+
+  skills/orca-api/LICENSE.txt is the upstream license file, unmodified.

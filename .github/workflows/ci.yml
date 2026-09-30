@@ -1,0 +1,55 @@
+# Copyright The Orca Authors
+# SPDX-License-Identifier: Apache-2.0
+
+# Runs every verification gate against published artifacts only: @runorca/orca-sdk
+# from npm and ork from the orca-ae Homebrew tap. It uses no secrets, so pull
+# requests from forks run exactly the same checks.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-all:
+    name: check-all
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: scripts/package-lock.json
+
+      - name: Install the pinned SDK and compiler
+        run: npm ci --prefix scripts --no-audit --no-fund --ignore-scripts
+
+      # Homebrew ships on the Ubuntu runners but isn't on PATH. The formula in the
+      # tap pins each release archive's checksum.
+      - name: Install ork
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: "1"
+          HOMEBREW_NO_INSTALL_CLEANUP: "1"
+          HOMEBREW_NO_ENV_HINTS: "1"
+        run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew install orca-ae/tap/ork
+          echo "ORK_BIN=$(brew --prefix)/bin/ork" >> "$GITHUB_ENV"
+
+      - name: Run every gate
+        run: scripts/check-all.sh

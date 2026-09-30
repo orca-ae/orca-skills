@@ -1,0 +1,29 @@
+{
+  "name": "orca-skills",
+  "owner": {
+    "name": "Orca",
+    "email": "hello@runorca.ai"
+  },
+  "metadata": {
+    "description": "Agent Skills for Orca Agent Engine",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "orca-api",
+      "description": "Orca Agent Engine API, CLI, and TypeScript SDK documentation skill for building managed agents",
+      "source": "./",
+      "strict": false,
+      "author": {
+        "name": "The Orca Authors",
+        "email": "hello@runorca.ai"
+      },
+      "homepage": "https://runorca.ai",
+      "repository": "https://github.com/orca-ae/orca-skills",
+      "license": "Apache-2.0",
+      "skills": [
+        "./skills/orca-api"
+      ]
+    }
+  ]
+}

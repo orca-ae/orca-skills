@@ -1,0 +1,39 @@
+name: Feature request
+description: Propose new coverage, a new skill, or a change to how the skills work.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Open-ended ideas are often easier to explore in
+        [Discussions](https://github.com/orca-ae/orca-skills/discussions/categories/ideas) first.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Describe what an agent gets wrong or can't do today. Leave the solution for the next field.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What alternatives have you considered?
+  - type: dropdown
+    id: scope
+    attributes:
+      label: How big is the change?
+      description: >-
+        A new skill, a change to a skill's scope, or a change to how the gates verify skills needs an
+        OIP first; see CONTRIBUTING.md.
+      options:
+        - A correction or an addition to an existing topic
+        - A new skill, a scope change, or a change to the gates
+        - Not sure
+    validations:
+      required: true
